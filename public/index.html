@@ -797,19 +797,28 @@
 
 
   function animateCount(id, target) {
-    const el = document.getElementById(id);
-    let current = 0;
-    const step = target / 30;
-    const interval = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        el.textContent = Math.round(target);
-        clearInterval(interval);
-      } else {
-        el.textContent = Math.round(current);
-      }
-    }, 20);
+  const el = document.getElementById(id);
+  
+  // If target is '-', skip animation and show the dash
+  if (target === '-') {
+    el.textContent = '-';
+    return;
   }
+
+  let current = 0;
+  const targetNum = parseFloat(target) || 0;
+  const step = targetNum / 30;
+  
+  const interval = setInterval(() => {
+    current += step;
+    if (current >= targetNum) {
+      el.textContent = Math.round(targetNum);
+      clearInterval(interval);
+    } else {
+      el.textContent = Math.round(current);
+    }
+  }, 20);
+}
 
   document.getElementById('cetInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') lookupCET();

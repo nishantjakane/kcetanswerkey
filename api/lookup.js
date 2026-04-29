@@ -20,12 +20,12 @@ export default function handler(req, res) {
     for (let i = 1; i < lines.length; i++) {
       const cols = lines[i].split(',').map(c => c.trim());
       if (cols[0].toUpperCase() === searchKey) {
-        result = {
-          phy: parseFloat(cols[1]) || 0,
-          che: parseFloat(cols[2]) || 0,
-          mat: parseFloat(cols[3]) || 0,
-          total: parseFloat(cols[4]) || 0
-        };
+result = {
+  phy: cols[1] === '-' ? '-' : (parseFloat(cols[1]) || 0),
+  che: cols[2] === '-' ? '-' : (parseFloat(cols[2]) || 0),
+  mat: cols[3] === '-' ? '-' : (parseFloat(cols[3]) || 0),
+  total: cols[4] === '-' ? '-' : (parseFloat(cols[4]) || 0)
+};
         break;
       }
     }
