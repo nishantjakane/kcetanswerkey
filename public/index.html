@@ -417,17 +417,14 @@
   }
   .result-cet span { color: var(--accent); font-weight: 500; }
 
-  .rank-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--gold);
-    background: rgba(240,192,64,0.1);
-    border: 1px solid rgba(240,192,64,0.25);
-    border-radius: 100px;
-    padding: 4px 14px;
-    text-transform: uppercase;
-  }
+.rank-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted); /* Changed from gold to a subtle muted color */
+  text-transform: uppercase;
+  /* Removed background, border, and padding */
+}
 
   .marks-grid {
     display: grid;
@@ -589,6 +586,10 @@
     </div>
     <div class="disclaimer-points">
       <div class="disclaimer-point">
+  <div class="point-dot" style="background: var(--accent2)"></div>
+  <span>This tool was <strong>"vibe coded"</strong> by an AI collaborator. While the math is solid, the logic may have slight inaccuracies—trust your official KEA scorecard over this tool.</span>
+</div>
+      <div class="disclaimer-point">
         <div class="point-dot"></div>
         <span>Marks shown here are <strong style="color:var(--text)">estimated</strong> and may differ from the official scorecard. Always verify on the official KEA portal.</span>
       </div>
@@ -679,9 +680,10 @@
       </div>
     </div>
   </div>
-
-  <div class="footer">Built for educational feedback · Not affiliated with KEA or Govt. of Karnataka</div>
+<div class="footer">
+  Vibe Coded with AI &middot; Data may be inaccurate &middot; Not affiliated with KEA or Govt. of Karnataka
 </div>
+  </div>
 
 <script>
   let cetData = {};
@@ -772,23 +774,23 @@
   }
 
   function displayResults(cetNo, data) {
-    document.getElementById('resultCET').textContent = cetNo;
-    const pct = (data.total / 180) * 100;
-    const badge = document.getElementById('rankBadge');
+  document.getElementById('resultCET').textContent = cetNo;
+  const pct = (data.total / 180) * 100;
+  const badge = document.getElementById('rankBadge');
 
-    if (pct >= 90) badge.textContent = 'Distinction';
-    else if (pct >= 75) badge.textContent = 'First Class';
-    else if (pct >= 35) badge.textContent = 'Qualified';
-    else badge.textContent = 'Results Pending';
+  // Updated logic with your "vibe" disclaimer in mind
+  if (pct >= 90) badge.textContent = 'High Score Range';
+  else if (pct >= 75) badge.textContent = 'Above Average Range';
+  else if (pct >= 35) badge.textContent = 'Average Range';
+  else badge.textContent = 'Score Feedback';
 
-    document.getElementById('results').style.display = 'block';
+  document.getElementById('results').style.display = 'block';
 
-    animateCount('phyVal', data.phy);
-    animateCount('cheVal', data.che);
-    animateCount('matVal', data.mat);
-    animateCount('totalVal', data.total);
-
-  }
+  animateCount('phyVal', data.phy);
+  animateCount('cheVal', data.che);
+  animateCount('matVal', data.mat);
+  animateCount('totalVal', data.total);
+}
 
 
   function animateCount(id, target) {
