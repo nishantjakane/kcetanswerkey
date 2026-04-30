@@ -1,0 +1,23 @@
+{
+  "name": "kcetanswerkey",
+  "version": "1.0.0",
+  "description": "CET Answer Key Feedback Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests configured\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://x-access-token:ghs_JGGK5Yl3zWeCAIsLvS5ZhWCpxwTAkR0RF6CZ@github.com/nishantjakane/kcetanswerkey.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nishantjakane/kcetanswerkey/issues"
+  },
+  "homepage": "https://github.com/nishantjakane/kcetanswerkey#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
