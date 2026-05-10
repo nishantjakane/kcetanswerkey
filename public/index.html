@@ -820,24 +820,26 @@
       el.style.display = 'block';
     }
 
-    function displayResults(cetNo, data) {
-    document.getElementById('resultCET').textContent = cetNo;
-    const pct = (data.total / 180) * 100;
-    const badge = document.getElementById('rankBadge');
+function displayResults(cetNo, data) {
+  document.getElementById('resultCET').textContent = cetNo;
+  const pct = (data.total / 180) * 100;
+  const badge = document.getElementById('rankBadge');
 
-    // Updated logic with your "vibe" disclaimer in mind
-    if (pct >= 90) badge.textContent = 'High Score Range';
-    else if (pct >= 75) badge.textContent = 'Above Average Range';
-    else if (pct >= 35) badge.textContent = 'Average Range';
-    else badge.textContent = 'Score Feedback';
+  if (pct >= 90) badge.textContent = 'High Score Range';
+  else if (pct >= 75) badge.textContent = 'Above Average Range';
+  else if (pct >= 35) badge.textContent = 'Average Range';
+  else badge.textContent = 'Score Feedback';
 
-    document.getElementById('results').style.display = 'block';
+  document.getElementById('results').style.display = 'block';
 
-    animateCount('phyVal', data.phy);
-    animateCount('cheVal', data.che);
-    animateCount('matVal', data.mat);
-    animateCount('totalVal', data.total);
-  }
+  // Scroll to results
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  animateCount('phyVal', data.phy);
+  animateCount('cheVal', data.che);
+  animateCount('matVal', data.mat);
+  animateCount('totalVal', data.total);
+}
 
 
     function animateCount(id, target) {
