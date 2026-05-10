@@ -1,839 +1,872 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CET Answer Key Feedback</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- Vercel Web Analytics -->
-<script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/insights/script.js"></script>
-<style>
-  :root {
-    --bg: #0a0d14;
-    --surface: #111520;
-    --surface2: #181e2e;
-    --border: rgba(99, 132, 255, 0.15);
-    --accent: #6384ff;
-    --accent2: #a78bfa;
-    --gold: #f0c040;
-    --text: #e8eaf6;
-    --muted: #7b82a0;
-    --phy: #60d9fa;
-    --che: #a78bfa;
-    --mat: #4ade80;
-    --total: #f0c040;
-    --danger: #f87171;
-    --warn: #fb923c;
-  }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CET Answer Key Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    :root {
+      --bg: #0a0d14;
+      --surface: #111520;
+      --surface2: #181e2e;
+      --border: rgba(99, 132, 255, 0.15);
+      --accent: #6384ff;
+      --accent2: #a78bfa;
+      --gold: #f0c040;
+      --text: #e8eaf6;
+      --muted: #7b82a0;
+      --phy: #60d9fa;
+      --che: #a78bfa;
+      --mat: #4ade80;
+      --total: #f0c040;
+      --danger: #f87171;
+      --warn: #fb923c;
+    }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(99,132,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(99,132,255,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-    animation: gridShift 20s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99,132,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,132,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      animation: gridShift 20s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  body::after {
-    content: '';
-    position: fixed;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(99,132,255,0.12) 0%, transparent 70%);
-    top: -150px; left: -150px;
-    pointer-events: none;
-    z-index: 0;
-    animation: orbFloat 8s ease-in-out infinite alternate;
-  }
+    body::after {
+      content: '';
+      position: fixed;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,132,255,0.12) 0%, transparent 70%);
+      top: -150px; left: -150px;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 8s ease-in-out infinite alternate;
+    }
 
-  @keyframes gridShift {
-    0% { background-position: 0 0, 0 0; }
-    100% { background-position: 48px 48px, 48px 48px; }
-  }
-  @keyframes orbFloat {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(80px, 60px); }
-  }
+    @keyframes gridShift {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 48px 48px, 48px 48px; }
+    }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(80px, 60px); }
+    }
 
-  .orb2 {
-    position: fixed;
-    width: 500px; height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(167,139,250,0.09) 0%, transparent 70%);
-    bottom: -100px; right: -100px;
-    pointer-events: none;
-    z-index: 0;
-    animation: orbFloat2 10s ease-in-out infinite alternate;
-  }
-  @keyframes orbFloat2 {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-60px, -80px); }
-  }
+    .orb2 {
+      position: fixed;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(167,139,250,0.09) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat2 10s ease-in-out infinite alternate;
+    }
+    @keyframes orbFloat2 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-60px, -80px); }
+    }
 
-  /* ── DISCLAIMER OVERLAY ── */
-  .disclaimer-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(10,13,20,0.88);
-    backdrop-filter: blur(6px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    animation: fadeIn 0.4s ease both;
-  }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    /* ── DISCLAIMER OVERLAY ── */
+    .disclaimer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,13,20,0.88);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.4s ease both;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  .disclaimer-card {
-    background: var(--surface);
-    border: 1px solid rgba(251,146,60,0.3);
-    border-radius: 24px;
-    padding: 40px 36px;
-    max-width: 480px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    animation: popUp 0.4s 0.1s ease both;
-  }
-  @keyframes popUp { from { opacity: 0; transform: scale(0.94) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .disclaimer-card {
+      background: var(--surface);
+      border: 1px solid rgba(251,146,60,0.3);
+      border-radius: 24px;
+      padding: 40px 36px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      animation: popUp 0.4s 0.1s ease both;
+    }
+    @keyframes popUp { from { opacity: 0; transform: scale(0.94) translateY(16px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-  .disclaimer-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--warn), transparent);
-    opacity: 0.7;
-  }
+    .disclaimer-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--warn), transparent);
+      opacity: 0.7;
+    }
 
-  .disclaimer-icon {
-    width: 52px; height: 52px;
-    border-radius: 16px;
-    background: rgba(251,146,60,0.12);
-    border: 1px solid rgba(251,146,60,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
+    .disclaimer-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: rgba(251,146,60,0.12);
+      border: 1px solid rgba(251,146,60,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
 
-  .disclaimer-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(251,146,60,0.1);
-    border: 1px solid rgba(251,146,60,0.25);
-    border-radius: 100px;
-    padding: 4px 14px;
+    .disclaimer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(251,146,60,0.1);
+      border: 1px solid rgba(251,146,60,0.25);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--warn);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .disclaimer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .disclaimer-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .disclaimer-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .disclaimer-points {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .disclaimer-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .point-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--warn);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .disclaimer-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--warn), #f97316);
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .disclaimer-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(251,146,60,0.3); }
+
+    .disclaimer-footer {
+      margin-top: 14px;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: rgba(123,130,160,0.5);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px 20px 80px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeDown 0.8s ease both;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99,132,255,0.1);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 80px);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #e8eaf6 30%, var(--accent) 70%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      max-width: 400px;
+      line-height: 1.6;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .search-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .search-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+      opacity: 0.6;
+    }
+
+    .search-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .cet-input {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      letter-spacing: 0.08em;
+    }
+    .cet-input::placeholder { color: var(--muted); font-weight: 300; }
+    .cet-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99,132,255,0.12), 0 0 20px rgba(99,132,255,0.08);
+    }
+
+    .search-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: 14px;
+      padding: 16px 28px;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .search-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(99,132,255,0.35); }
+
+    .db-status {
+      margin-top: 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4b5563; }
+    .status-dot.active { background: var(--mat); box-shadow: 0 0 8px var(--mat); }
+
+    .error-msg {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: rgba(248,113,113,0.08);
+      border: 1px solid rgba(248,113,113,0.25);
+      border-radius: 100px;
+      color: var(--danger);
+      font-size: 12px;
+      font-family: 'DM Mono', monospace;
+      display: none;
+      text-align: center;
+    }
+
+    /* Results */
+    .results {
+      width: 100%;
+      max-width: 520px;
+      margin-top: 28px;
+      animation: fadeUp 0.5s ease both;
+      display: none;
+    }
+
+    .result-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .result-cet {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .result-cet span { color: var(--accent); font-weight: 500; }
+
+  .rank-badge {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    color: var(--warn);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .disclaimer-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-
-  .disclaimer-body {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.75;
-    margin-bottom: 20px;
-  }
-
-  .disclaimer-body strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .disclaimer-points {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 18px;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .disclaimer-point {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .point-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--warn);
-    margin-top: 6px;
-    flex-shrink: 0;
-  }
-
-  .disclaimer-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--warn), #f97316);
-    border: none;
-    border-radius: 14px;
-    padding: 16px;
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    letter-spacing: 0.01em;
-  }
-  .disclaimer-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(251,146,60,0.3); }
-
-  .disclaimer-footer {
-    margin-top: 14px;
-    text-align: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: rgba(123,130,160,0.5);
-    letter-spacing: 0.08em;
-  }
-
-  /* ── MAIN CONTENT ── */
-  .container {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 60px 20px 80px;
-  }
-
-  .header {
-    text-align: center;
-    margin-bottom: 40px;
-    animation: fadeDown 0.8s ease both;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(99,132,255,0.1);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 6px 18px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-  .badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 8px var(--accent);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 7vw, 80px);
-    font-weight: 900;
-    line-height: 1;
-    background: linear-gradient(135deg, #e8eaf6 30%, var(--accent) 70%, var(--accent2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
-  }
-
-  .subtitle {
-    font-size: 15px;
-    color: var(--muted);
-    font-weight: 300;
-    letter-spacing: 0.03em;
-    max-width: 400px;
-    line-height: 1.6;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .search-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    width: 100%;
-    max-width: 520px;
-    position: relative;
-    overflow: hidden;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .search-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
-    opacity: 0.6;
-  }
-
-  .search-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .input-row {
-    display: flex;
-    gap: 12px;
-    align-items: stretch;
-  }
-
-  .cet-input {
-    flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    letter-spacing: 0.08em;
-  }
-  .cet-input::placeholder { color: var(--muted); font-weight: 300; }
-  .cet-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(99,132,255,0.12), 0 0 20px rgba(99,132,255,0.08);
-  }
-
-  .search-btn {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    border: none;
-    border-radius: 14px;
-    padding: 16px 28px;
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    white-space: nowrap;
-    letter-spacing: 0.01em;
-  }
-  .search-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(99,132,255,0.35); }
-
-  .db-status {
-    margin-top: 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4b5563; }
-  .status-dot.active { background: var(--mat); box-shadow: 0 0 8px var(--mat); }
-
-  .error-msg {
-    margin-top: 16px;
-    padding: 12px 16px;
-    background: rgba(248,113,113,0.08);
-    border: 1px solid rgba(248,113,113,0.25);
-    border-radius: 100px;
-    color: var(--danger);
     font-size: 12px;
-    font-family: 'DM Mono', monospace;
-    display: none;
-    text-align: center;
-  }
-
-  /* Results */
-  .results {
-    width: 100%;
-    max-width: 520px;
-    margin-top: 28px;
-    animation: fadeUp 0.5s ease both;
-    display: none;
-  }
-
-  .result-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  .result-cet {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .result-cet span { color: var(--accent); font-weight: 500; }
-
-.rank-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--muted); /* Changed from gold to a subtle muted color */
-  text-transform: uppercase;
-  /* Removed background, border, and padding */
-}
-
-  .marks-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .mark-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 24px 16px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-
-  .mark-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-  }
-  .mark-card.phy::before { background: var(--phy); box-shadow: 0 0 12px var(--phy); }
-  .mark-card.che::before { background: var(--che); box-shadow: 0 0 12px var(--che); }
-  .mark-card.mat::before { background: var(--mat); box-shadow: 0 0 12px var(--mat); }
-
-  .mark-subject {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.1em;
+    color: var(--muted); /* Changed from gold to a subtle muted color */
     text-transform: uppercase;
-    margin-bottom: 12px;
-    display: block;
+    /* Removed background, border, and padding */
   }
-  .phy .mark-subject { color: var(--phy); }
-  .che .mark-subject { color: var(--che); }
-  .mat .mark-subject { color: var(--mat); }
 
-  .mark-value {
-    font-family: 'Playfair Display', serif;
-    font-size: 44px;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .phy .mark-value { color: var(--phy); }
-  .che .mark-value { color: var(--che); }
-  .mat .mark-value { color: var(--mat); }
+    .marks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
 
-  .mark-max { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+    .mark-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
 
-  .total-card {
-    background: var(--surface);
-    border: 1px solid rgba(240,192,64,0.2);
+    .mark-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .mark-card.phy::before { background: var(--phy); box-shadow: 0 0 12px var(--phy); }
+    .mark-card.che::before { background: var(--che); box-shadow: 0 0 12px var(--che); }
+    .mark-card.mat::before { background: var(--mat); box-shadow: 0 0 12px var(--mat); }
+
+    .mark-subject {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .phy .mark-subject { color: var(--phy); }
+    .che .mark-subject { color: var(--che); }
+    .mat .mark-subject { color: var(--mat); }
+
+    .mark-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .phy .mark-value { color: var(--phy); }
+    .che .mark-value { color: var(--che); }
+    .mat .mark-value { color: var(--mat); }
+
+    .mark-max { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+
+    .total-card {
+      background: var(--surface);
+      border: 1px solid rgba(240,192,64,0.2);
+      border-radius: 18px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .total-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .total-desc { font-size: 13px; color: var(--muted); }
+
+    .total-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      text-shadow: 0 0 30px rgba(240,192,64,0.3);
+    }
+    .total-denom { font-family: 'DM Mono', monospace; font-size: 18px; color: var(--muted); }
+
+
+
+    /* ── OMR NOTE ── */
+    .omr-note {
+      margin-top: 16px;
+      background: rgba(251,146,60,0.06);
+      border: 1px solid rgba(251,146,60,0.2);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .omr-note-icon {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: rgba(251,146,60,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+      margin-top: 1px;
+    }
+
+    .omr-note-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    .omr-note-text strong {
+      color: var(--warn);
+      font-weight: 500;
+    }
+
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 480px) {
+      .marks-grid { grid-template-columns: 1fr; }
+      .search-card { padding: 28px 20px; }
+      .input-row { flex-direction: column; }
+      .total-value { font-size: 48px; }
+      .disclaimer-card { padding: 28px 20px; }
+    }
+
+    .footer {
+      margin-top: 48px;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: rgba(123,130,160,0.4);
+      letter-spacing: 0.1em;
+    }
+  </style>
+  </head>
+  <body>
+  <div class="orb2"></div>
+
+  <!-- DISCLAIMER POPUP -->
+  <div class="disclaimer-overlay" id="disclaimerOverlay">
+    <div class="disclaimer-card">
+      <div class="disclaimer-icon">⚠️</div>
+      <div class="disclaimer-badge">Important Notice</div>
+      <div class="disclaimer-title">Unofficial Result —<br>For Reference Only</div>
+      <div class="disclaimer-body">
+        This tool is <strong>not an official KCET result</strong>. It is an independent, student-built tool calculated from the <strong>provisional answer key</strong> publicly released by KEA (Karnataka Examinations Authority).
+      </div>
+      <div class="disclaimer-points">
+        <div class="disclaimer-point">
+    <div class="point-dot" style="background: var(--accent2)"></div>
+    <span>This tool was <strong>"vibe coded"</strong> by an AI collaborator. While the math is solid, the logic may have slight inaccuracies—trust your official KEA scorecard over this tool.</span>
+  </div>
+        <div class="disclaimer-point">
+          <div class="point-dot"></div>
+          <span>Marks shown here are <strong style="color:var(--text)">estimated</strong> and may differ from the official scorecard. Always verify on the official KEA portal.</span>
+        </div>
+        <div class="disclaimer-point">
+          <div class="point-dot"></div>
+          <span>This is built purely for <strong style="color:var(--text)">feedback &amp; educational purposes</strong> — to help students get an early idea of their performance.</span>
+        </div>
+        <div class="disclaimer-point">
+          <div class="point-dot"></div>
+          <span>Scores may change after the <strong style="color:var(--text)">final answer key</strong> is published by KEA following objection processing.</span>
+        </div>
+        <div class="disclaimer-point">
+          <div class="point-dot"></div>
+          <span>This tool has <strong style="color:var(--text)">no official affiliation</strong> with KEA, the Government of Karnataka, or any examination authority.</span>
+        </div>
+      </div>
+      <button class="disclaimer-btn" onclick="closeDisclaimer()">I Understand — Continue to Check My Marks →</button>
+      <div class="disclaimer-footer">Karnataka CET 2026 · Provisional Answer Key Data</div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div style="text-align: center; padding: 15px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    Built by 
+    <span style="color: var(--accent); font-weight: 500; display: flex; align-items: center; gap: 6px;">
+      Nishant21
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); opacity: 0.8;">
+        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.196.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.946 2.419-2.157 2.419z"/>
+      </svg>
+    </span>
+  </div>
+  <div class="container">
+    <header class="header">
+      <div class="badge">Karnataka CET · 2026</div>
+      <h1>CET AnswerKey<br>Feedback</h1>
+      <p class="subtitle">Enter your application number to view your CET marks according to provisional answer key.</p>
+    </header>
+
+    <div class="search-card">
+      <!-- FINAL KEY UPDATE NOTICE -->
+  <div style="
+    background: linear-gradient(135deg, rgba(74,222,128,0.07), rgba(99,132,255,0.07));
+    border: 1px solid rgba(74,222,128,0.25);
     border-radius: 18px;
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .total-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 6px;
-  }
-  .total-desc { font-size: 13px; color: var(--muted); }
-
-  .total-value {
-    font-family: 'Playfair Display', serif;
-    font-size: 64px;
-    font-weight: 900;
-    color: var(--gold);
-    line-height: 1;
-    text-shadow: 0 0 30px rgba(240,192,64,0.3);
-  }
-  .total-denom { font-family: 'DM Mono', monospace; font-size: 18px; color: var(--muted); }
-
-
-
-  /* ── OMR NOTE ── */
-  .omr-note {
-    margin-top: 16px;
-    background: rgba(251,146,60,0.06);
-    border: 1px solid rgba(251,146,60,0.2);
-    border-radius: 14px;
-    padding: 16px 18px;
+    padding: 20px 22px;
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-  }
-
-  .omr-note-icon {
-    width: 28px; height: 28px;
-    border-radius: 8px;
-    background: rgba(251,146,60,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 14px;
-    margin-top: 1px;
-  }
-
-  .omr-note-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.7;
-    letter-spacing: 0.02em;
-  }
-
-  .omr-note-text strong {
-    color: var(--warn);
-    font-weight: 500;
-  }
-
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-24px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-  @media (max-width: 480px) {
-    .marks-grid { grid-template-columns: 1fr; }
-    .search-card { padding: 28px 20px; }
-    .input-row { flex-direction: column; }
-    .total-value { font-size: 48px; }
-    .disclaimer-card { padding: 28px 20px; }
-  }
-
-  .footer {
-    margin-top: 48px;
-    text-align: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: rgba(123,130,160,0.4);
-    letter-spacing: 0.1em;
-  }
-</style>
-</head>
-<body>
-<div class="orb2"></div>
-
-<!-- DISCLAIMER POPUP -->
-<div class="disclaimer-overlay" id="disclaimerOverlay">
-  <div class="disclaimer-card">
-    <div class="disclaimer-icon">⚠️</div>
-    <div class="disclaimer-badge">Important Notice</div>
-    <div class="disclaimer-title">Unofficial Result —<br>For Reference Only</div>
-    <div class="disclaimer-body">
-      This tool is <strong>not an official KCET result</strong>. It is an independent, student-built tool calculated from the <strong>provisional answer key</strong> publicly released by KEA (Karnataka Examinations Authority).
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 520px;
+    margin: 0px 0 10px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  ">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(74,222,128,0.6),rgba(99,132,255,0.4),transparent);"></div>
+  <div style="width:36px;height:36px;border-radius:10px;background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;">✅</div>
+  <div style="flex:1;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);border-radius:100px;padding:3px 10px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--mat);text-transform:uppercase;">
+        <span style="width:5px;height:5px;border-radius:50%;background:var(--mat);box-shadow:0 0 6px var(--mat);display:inline-block;"></span>Updated
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.25);border-radius:100px;padding:3px 10px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--warn);text-transform:uppercase;">
+        <span style="width:5px;height:5px;border-radius:50%;background:var(--warn);box-shadow:0 0 6px var(--warn);display:inline-block;"></span>Grace Marks Applied
+      </span>
     </div>
-    <div class="disclaimer-points">
-      <div class="disclaimer-point">
-  <div class="point-dot" style="background: var(--accent2)"></div>
-  <span>This tool was <strong>"vibe coded"</strong> by an AI collaborator. While the math is solid, the logic may have slight inaccuracies—trust your official KEA scorecard over this tool.</span>
-</div>
-      <div class="disclaimer-point">
-        <div class="point-dot"></div>
-        <span>Marks shown here are <strong style="color:var(--text)">estimated</strong> and may differ from the official scorecard. Always verify on the official KEA portal.</span>
-      </div>
-      <div class="disclaimer-point">
-        <div class="point-dot"></div>
-        <span>This is built purely for <strong style="color:var(--text)">feedback &amp; educational purposes</strong> — to help students get an early idea of their performance.</span>
-      </div>
-      <div class="disclaimer-point">
-        <div class="point-dot"></div>
-        <span>Scores may change after the <strong style="color:var(--text)">final answer key</strong> is published by KEA following objection processing.</span>
-      </div>
-      <div class="disclaimer-point">
-        <div class="point-dot"></div>
-        <span>This tool has <strong style="color:var(--text)">no official affiliation</strong> with KEA, the Government of Karnataka, or any examination authority.</span>
-      </div>
-    </div>
-    <button class="disclaimer-btn" onclick="closeDisclaimer()">I Understand — Continue to Check My Marks →</button>
-    <div class="disclaimer-footer">Karnataka CET 2026 · Provisional Answer Key Data</div>
-  </div>
-</div>
-
-<!-- MAIN CONTENT -->
-<div style="text-align: center; padding: 15px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 8px;">
-  Built by 
-  <span style="color: var(--accent); font-weight: 500; display: flex; align-items: center; gap: 6px;">
-    Nishant21
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color: var(--accent); opacity: 0.8;">
-      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.196.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.946 2.419-2.157 2.419z"/>
-    </svg>
-  </span>
-</div>
-<div class="container">
-  <header class="header">
-    <div class="badge">Karnataka CET · 2026</div>
-    <h1>CET AnswerKey<br>Feedback</h1>
-    <p class="subtitle">Enter your application number to view your CET marks according to provisional answer key.</p>
-  </header>
-
-  <div class="search-card">
-    <span class="search-label">CET Application Number</span>
-    <div class="input-row">
-      <input class="cet-input" type="text" id="cetInput" placeholder="Enter CET No." autocomplete="off" />
-      <button class="search-btn" onclick="lookupCET()">Search →</button>
+    <div style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:var(--text);margin-bottom:6px;line-height:1.4;">
+      Scores updated with <span style="color:var(--mat);">Final Answer Key</span>
     </div>
     
-    <div class="db-status">
-      <div class="status-dot" id="statusDot"></div>
-      <span id="statusText">Connecting to database...</span>
-    </div>
-
-    <div class="error-msg" id="errorMsg"></div>
   </div>
-
-  <div class="results" id="results">
-    <div class="result-header">
-      <div class="result-cet">CET No: <span id="resultCET"></span></div>
-      <div class="rank-badge" id="rankBadge"></div>
-    </div>
-
-    <div class="marks-grid">
-      <div class="mark-card phy">
-        <span class="mark-subject">Physics</span>
-        <div class="mark-value" id="phyVal">0</div>
-        <div class="mark-max">/ 60</div>
-      </div>
-      <div class="mark-card che">
-        <span class="mark-subject">Chemistry</span>
-        <div class="mark-value" id="cheVal">0</div>
-        <div class="mark-max">/ 60</div>
-      </div>
-      <div class="mark-card mat">
-        <span class="mark-subject">Maths</span>
-        <div class="mark-value" id="matVal">0</div>
-        <div class="mark-max">/ 60</div>
-      </div>
-    </div>
-
-    <div class="total-card">
-      <div>
-        <span class="total-label">Total Score</span>
-        <div class="total-desc">Aggregate Performance</div>
-      </div>
-      <div style="text-align:right">
-        <span class="total-value" id="totalVal">0</span>
-        <span class="total-denom">/180</span>
-      </div>
-    </div>
-
-
-
-    <!-- OMR DETECTION NOTE -->
-    <div class="omr-note">
-      <div class="omr-note-icon">🔍</div>
-      <div class="omr-note-text">
-        <strong>Seeing a "−" for any subject?</strong><br>
-        This means our program couldn't properly detect your OMR sheet response for that subject from the publicly released data. This is a data detection issue on our end — not a reflection of your actual performance. Please check your official marks on the <strong>KEA portal</strong> directly.
-      </div>
-    </div>
-  </div>
-<div class="footer">
-  Vibe Coded with AI &middot; Data may be inaccurate &middot; Not affiliated with KEA or Govt. of Karnataka
 </div>
+      <span class="search-label">CET Application Number</span>
+      <div class="input-row">
+        <input class="cet-input" type="text" id="cetInput" placeholder="Enter CET No." autocomplete="off" />
+        <button class="search-btn" onclick="lookupCET()">Search →</button>
+      </div>
+      
+      <div class="db-status">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Connecting to database...</span>
+      </div>
+
+      <div class="error-msg" id="errorMsg"></div>
+    </div>
+
+    <div class="results" id="results">
+      <div class="result-header">
+        <div class="result-cet">CET No: <span id="resultCET"></span></div>
+        <div class="rank-badge" id="rankBadge"></div>
+      </div>
+
+      <div class="marks-grid">
+        <div class="mark-card phy">
+          <span class="mark-subject">Physics</span>
+          <div class="mark-value" id="phyVal">0</div>
+          <div class="mark-max">/ 60</div>
+        </div>
+        <div class="mark-card che">
+          <span class="mark-subject">Chemistry</span>
+          <div class="mark-value" id="cheVal">0</div>
+          <div class="mark-max">/ 60</div>
+        </div>
+        <div class="mark-card mat">
+          <span class="mark-subject">Maths</span>
+          <div class="mark-value" id="matVal">0</div>
+          <div class="mark-max">/ 60</div>
+        </div>
+      </div>
+
+      <div class="total-card">
+        <div>
+          <span class="total-label">Total Score</span>
+          <div class="total-desc">Aggregate Performance</div>
+        </div>
+        <div style="text-align:right">
+          <span class="total-value" id="totalVal">0</span>
+          <span class="total-denom">/180</span>
+        </div>
+      </div>
+
+
+
+      <!-- OMR DETECTION NOTE -->
+      <div class="omr-note">
+        <div class="omr-note-icon">🔍</div>
+        <div class="omr-note-text">
+          <strong>Seeing a "−" for any subject?</strong><br>
+          This means our program couldn't properly detect your OMR sheet response for that subject from the publicly released data. This is a data detection issue on our end — not a reflection of your actual performance. Please check your official marks on the <strong>KEA portal</strong> directly.
+        </div>
+      </div>
+    </div>
+  <div class="footer">
+    Vibe Coded with AI &middot; Data may be inaccurate &middot; Not affiliated with KEA or Govt. of Karnataka
   </div>
+    </div>
 
-<script>
-  let cetData = {};
-  let isDataLoaded = false;
+  <script>
+    let cetData = {};
+    let isDataLoaded = false;
 
-  function closeDisclaimer() {
-    const overlay = document.getElementById('disclaimerOverlay');
-    overlay.style.opacity = '0';
-    overlay.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => { overlay.style.display = 'none'; }, 300);
-  }
+    function closeDisclaimer() {
+      const overlay = document.getElementById('disclaimerOverlay');
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    }
 
-  window.addEventListener('DOMContentLoaded', () => {
-    fetch('final.csv')
-      .then(response => {
-        if (!response.ok) throw new Error('File not found');
-        return response.text();
-      })
-      .then(text => {
-        parseCSV(text);
-        updateStatus(true, `Database Ready · ${Object.keys(cetData).length} records`);
-      })
-      .catch(err => {
-        updateStatus(false, 'Database Error: final.csv not found');
-        console.error('Error loading final.csv:', err);
-      });
-  });
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('final.csv')
+        .then(response => {
+          if (!response.ok) throw new Error('File not found');
+          return response.text();
+        })
+        .then(text => {
+          parseCSV(text);
+          updateStatus(true, `Database Ready · ${Object.keys(cetData).length} records`);
+        })
+        .catch(err => {
+          updateStatus(false, 'Database Error: final.csv not found');
+          console.error('Error loading final.csv:', err);
+        });
+    });
 
-  function updateStatus(success, message) {
-    const dot = document.getElementById('statusDot');
-    const text = document.getElementById('statusText');
-    text.textContent = message;
-    if (success) {
-      dot.classList.add('active');
-      isDataLoaded = true;
+    function updateStatus(success, message) {
+      const dot = document.getElementById('statusDot');
+      const text = document.getElementById('statusText');
+      text.textContent = message;
+      if (success) {
+        dot.classList.add('active');
+        isDataLoaded = true;
+      }
+    }
+
+    function parseCSV(text) {
+      const lines = text.trim().split(/\r?\n/);
+      if (lines.length === 0) return;
+
+      const delim = lines[0].includes('\t') ? '\t' : ',';
+
+      for (let i = 1; i < lines.length; i++) {
+        const cols = lines[i].split(delim).map(c => c.trim());
+        if (cols.length < 2) continue;
+
+        const key = cols[0].toUpperCase();
+        cetData[key] = {
+          phy: parseFloat(cols[1]) || 0,
+          che: parseFloat(cols[2]) || 0,
+          mat: parseFloat(cols[3]) || 0,
+          total: parseFloat(cols[4]) || 0
+        };
+      }
+    }
+
+    async function lookupCET() {
+    const input = document.getElementById('cetInput').value.trim().toUpperCase();
+    const errEl = document.getElementById('errorMsg');
+    const resultsEl = document.getElementById('results');
+
+    errEl.style.display = 'none';
+    resultsEl.style.display = 'none';
+
+    if (!input) { showError('Please enter a CET number.'); return; }
+
+    try {
+      const response = await fetch(`/api/lookup?cet=${input}`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        showError(data.error || 'Something went wrong');
+        return;
+      }
+
+      displayResults(input, data);
+    } catch (err) {
+      showError('Failed to connect to the server.');
     }
   }
 
-  function parseCSV(text) {
-    const lines = text.trim().split(/\r?\n/);
-    if (lines.length === 0) return;
-
-    const delim = lines[0].includes('\t') ? '\t' : ',';
-
-    for (let i = 1; i < lines.length; i++) {
-      const cols = lines[i].split(delim).map(c => c.trim());
-      if (cols.length < 2) continue;
-
-      const key = cols[0].toUpperCase();
-      cetData[key] = {
-        phy: parseFloat(cols[1]) || 0,
-        che: parseFloat(cols[2]) || 0,
-        mat: parseFloat(cols[3]) || 0,
-        total: parseFloat(cols[4]) || 0
-      };
+    function showError(msg) {
+      const el = document.getElementById('errorMsg');
+      el.textContent = msg;
+      el.style.display = 'block';
     }
+
+    function displayResults(cetNo, data) {
+    document.getElementById('resultCET').textContent = cetNo;
+    const pct = (data.total / 180) * 100;
+    const badge = document.getElementById('rankBadge');
+
+    // Updated logic with your "vibe" disclaimer in mind
+    if (pct >= 90) badge.textContent = 'High Score Range';
+    else if (pct >= 75) badge.textContent = 'Above Average Range';
+    else if (pct >= 35) badge.textContent = 'Average Range';
+    else badge.textContent = 'Score Feedback';
+
+    document.getElementById('results').style.display = 'block';
+
+    animateCount('phyVal', data.phy);
+    animateCount('cheVal', data.che);
+    animateCount('matVal', data.mat);
+    animateCount('totalVal', data.total);
   }
 
-  async function lookupCET() {
-  const input = document.getElementById('cetInput').value.trim().toUpperCase();
-  const errEl = document.getElementById('errorMsg');
-  const resultsEl = document.getElementById('results');
 
-  errEl.style.display = 'none';
-  resultsEl.style.display = 'none';
-
-  if (!input) { showError('Please enter a CET number.'); return; }
-
-  try {
-    const response = await fetch(`/api/lookup?cet=${input}`);
-    const data = await response.json();
-
-    if (!response.ok) {
-      showError(data.error || 'Something went wrong');
+    function animateCount(id, target) {
+    const el = document.getElementById(id);
+    
+    // If target is '-', skip animation and show the dash
+    if (target === '-') {
+      el.textContent = '-';
       return;
     }
 
-    displayResults(input, data);
-  } catch (err) {
-    showError('Failed to connect to the server.');
-  }
-}
-
-  function showError(msg) {
-    const el = document.getElementById('errorMsg');
-    el.textContent = msg;
-    el.style.display = 'block';
-  }
-
-  function displayResults(cetNo, data) {
-  document.getElementById('resultCET').textContent = cetNo;
-  const pct = (data.total / 180) * 100;
-  const badge = document.getElementById('rankBadge');
-
-  // Updated logic with your "vibe" disclaimer in mind
-  if (pct >= 90) badge.textContent = 'High Score Range';
-  else if (pct >= 75) badge.textContent = 'Above Average Range';
-  else if (pct >= 35) badge.textContent = 'Average Range';
-  else badge.textContent = 'Score Feedback';
-
-  document.getElementById('results').style.display = 'block';
-
-  animateCount('phyVal', data.phy);
-  animateCount('cheVal', data.che);
-  animateCount('matVal', data.mat);
-  animateCount('totalVal', data.total);
-}
-
-
-  function animateCount(id, target) {
-  const el = document.getElementById(id);
-  
-  // If target is '-', skip animation and show the dash
-  if (target === '-') {
-    el.textContent = '-';
-    return;
+    let current = 0;
+    const targetNum = parseFloat(target) || 0;
+    const step = targetNum / 30;
+    
+    const interval = setInterval(() => {
+      current += step;
+      if (current >= targetNum) {
+        el.textContent = Math.round(targetNum);
+        clearInterval(interval);
+      } else {
+        el.textContent = Math.round(current);
+      }
+    }, 20);
   }
 
-  let current = 0;
-  const targetNum = parseFloat(target) || 0;
-  const step = targetNum / 30;
-  
-  const interval = setInterval(() => {
-    current += step;
-    if (current >= targetNum) {
-      el.textContent = Math.round(targetNum);
-      clearInterval(interval);
-    } else {
-      el.textContent = Math.round(current);
-    }
-  }, 20);
-}
-
-  document.getElementById('cetInput').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') lookupCET();
-  });
-</script>
-</body>
-</html>
+    document.getElementById('cetInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') lookupCET();
+    });
+  </script>
+  </body>
+  </html>
